@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content1 %}
+{% if user.is_authenticated %}
+<div class="container my-5 ">
+    <form action="/Task" method="POST">
+    {% csrf_token %}
+    <div class="mb-3">
+        <label for="formGroupExampleInput2" class="form-label">Task name</label>
+        <input type="text" class="form-control" id="Task" name = "Task" placeholder="Task please">
+    </div>
+    <div class="mb-3">
+        <label for="exampleFormControlTextarea1" class="form-label">description</label>
+        <textarea class="form-control" id="Description"  name = "Description" rows="3"></textarea>
+    </div>
+    <div class="mb-3">
+        <label for="exampleFormControlDate1" class="form-label">Date</label>
+        <input type="Date" class="form-control" id="Date" name = "Date"placeholder="Date please">
+    </div>
+    <button type="submit" class="btn btn-primary mb-3">Submit</button>
+    </form>
+</div>
+{% endif %}
+{% endblock %}

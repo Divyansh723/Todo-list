@@ -1,0 +1,56 @@
+{% extends "base.html" %} 
+
+{% block content1 %}
+
+{% if user.is_authenticated %}
+<div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+    <div class="col col-lg-9 col-xl-7">
+        <div class="card rounded-3">
+        <div class="card-body p-4">
+            <div class="container my-5">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Task</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Progress</th>
+                    <th scope="col">Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for i in todos %}
+                <tr>
+                    <th scope="row">1</th>
+                    <td>{{i.todo_name}}</td>
+                    <td>{{i.description}}</td>
+                    <td>{{i.date}}</td>
+                    {% if i.status %}
+                    <td>Completed</td>
+                    {% else %}
+                    <td>Remaining</td>
+                    {% endif %}
+                    <td>
+                        <a href="{% url 'delete' i.todo_name %}">
+                            <button type = "submit" class="btn btn-danger" >Delete</button>
+                        </a>  
+                        <a href="update/{{i.todo_name}}">
+                            <button type = "submit" class="btn btn-success ms-1">Finished</button>
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            </div>
+        </div>
+        </div>
+    </div>
+    </div>
+</div>
+{% else %}
+<div> hello world </div>
+{% endif %}
+{% endblock %}
